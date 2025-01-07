@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"os"
@@ -16,7 +17,8 @@ var GOOGLE_CLOUD_AUTH string = os.Getenv("GOOGLE_CLOUD_AUTH")
 
 func main() {
 	LoadGoogleCredentials()
-	funcframework.RegisterHTTPFunction("/", f.Trigger)
+	ctx := context.Background()
+	funcframework.RegisterHTTPFunctionContext(ctx, "/", f.Trigger)
 	if err := funcframework.Start(PORT); err != nil {
 		log.Fatalf("Error: %v\n", err)
 	}
