@@ -24,7 +24,7 @@ func Trigger(response http.ResponseWriter, request *http.Request) {
 
 		Service(message)
 
-		responseBody := "Finish!"
+		responseBody := "Done"
 		log.Println(responseBody)
 		fmt.Fprint(response, html.EscapeString(responseBody))
 	}

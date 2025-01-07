@@ -16,10 +16,15 @@ var PORT string = os.Getenv("PORT")
 var GOOGLE_CLOUD_AUTH string = os.Getenv("GOOGLE_CLOUD_AUTH")
 
 func main() {
+	port := "1323"
+	if envPort := PORT; envPort != "" {
+		port = envPort
+	}
+	log.Printf("Running HTTP server at port \"%v\"\n", port)
 	LoadGoogleCredentials()
 	ctx := context.Background()
 	funcframework.RegisterHTTPFunctionContext(ctx, "/", f.Trigger)
-	if err := funcframework.Start(PORT); err != nil {
+	if err := funcframework.Start(port); err != nil {
 		log.Fatalf("Error: %v\n", err)
 	}
 }
