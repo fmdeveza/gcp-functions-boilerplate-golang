@@ -19,3 +19,17 @@ $ curl -X POST -H \
   localhost:1323/
 Done%
 ```
+
+## Deploy
+
+```console
+$ gcloud functions deploy "$GCP_SERVICE_NAME" \
+  --project="$GCP_PROJECT_ID" \
+  --region="$GCP_REGION" \
+  --source="$CI_PROJECT_DIR" \
+  --runtime="go122" \
+  --entry-point="Trigger" \
+  --trigger-http
+Deploying function (may take a while - up to 2 minutes)...
+..
+```
